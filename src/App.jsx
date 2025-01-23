@@ -14,7 +14,6 @@ function App() {
     [null, null, null, null],
   ])
   const [gameOver, setGameOver] = useState(false)
-  const [mensaje, setMensaje] = useState("")
 
   const cards = ['🍉', '🍌', '🍇', '🍓', '🍒', '🍑']
   
@@ -56,7 +55,6 @@ function App() {
     ])
     setGameOver(false)
     initializeBoard()
-    setMensaje("")
   }
 
   const handleCellClick = (rowIndex, colIndex) => {
@@ -75,7 +73,6 @@ function App() {
         [null, null, null, null],
       ]
       setRevealedBoard(resetedBoard)
-      setMensaje("")
       return
     }
     
@@ -90,12 +87,10 @@ function App() {
     if (revealedCards.length === 2) {
       setGameOver(true)
       console.log("gameOver")
-      setMensaje("¡Ganaste!")
       return
     }
 
     // si no hay reveladas o hay una sola revelada continuo, sino reseteo
-    console.log("revealedCount", revealedCount)
     if (revealedCount > 2) {
       const resetedBoard = [
         [null, null, null, null],
@@ -111,7 +106,7 @@ function App() {
   return (
     <>
       <h1>Juego de la memoria</h1>
-      <h2 className='mensaje'>{mensaje}</h2>
+      <h2 className='mensaje'>{ gameOver === true ? "Ganaste!!!" : ''}</h2>
       <div className="board">
         {board.map((row, rowIndex) => (
           <div className="row" key={rowIndex}>
